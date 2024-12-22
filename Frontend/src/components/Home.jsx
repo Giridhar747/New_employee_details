@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { server } from '../../config';
 
 const Home = () => {
     const [data, setData] = useState(null);
@@ -17,7 +18,7 @@ const Home = () => {
         const fetchData = async () => {
             console.log('Fetching employee data...');
             try {
-                const response = await fetch('http://localhost:8080/getall');
+                const response = await fetch(`${server}/getall`);
                 if (!response.ok) {
                     throw new Error(`Fetch error: ${response.status}`);
                 }
@@ -39,7 +40,7 @@ const Home = () => {
     async function handleDelete(id) {
         try {
             console.log(`Deleting employee with id: ${id}`);
-            const response = await axios.delete("http://localhost:8080/delete", {
+            const response = await axios.delete(`${server}/delete`, {
                 params: { id: id }, 
             });
     

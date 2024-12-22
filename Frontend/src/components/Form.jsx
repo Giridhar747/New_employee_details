@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import axios from "axios";
+import { server } from '../../config';
 
 const Form = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Form = () => {
     if (!validate()) return; 
 
     try {
-      const result = await axios.post("http://localhost:8080/insert", {
+      const result = await axios.post(`${server}/insert`, {
         name: formData.name,
         email: formData.email,
         ph_num: formData.ph_num,
